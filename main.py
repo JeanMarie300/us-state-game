@@ -35,10 +35,7 @@ while score < 50 :
     yCoordinate = stateData[stateData["state"] == answer].y
 
     if answer == "Exit":
-        stateToLearn = []
-        for state in stateList:
-            if state not in guessedStates:
-                stateToLearn.append(state)
+        stateToLearn = [state for state in stateList if state not in guessedStates]
         df = pandas.DataFrame(stateToLearn)
         df.to_csv("states_to_learn.csv")
         break
@@ -52,7 +49,10 @@ while score < 50 :
             guessedStates.append(state.item())
             score += 1
 
+
     turtle.penup()
     turtle.setposition(0,0)
     attempt += 1
+
+
 
